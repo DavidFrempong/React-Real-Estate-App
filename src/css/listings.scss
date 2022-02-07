@@ -1,0 +1,38 @@
+@import "variables";
+
+header{
+background: #0c002b;
+color: #FFFFFF;
+overflow: auto;
+padding: 20px 15px;
+
+.logo{
+    float: left; 
+}
+}
+
+nav{
+    float: right;
+
+    a{
+        color: #FFFFFF;
+        text-decoration: none;
+        padding: 10px 25px;
+        text-transform: capitalize;
+        font-weight: 400;
+        font-size: 0.9rem;
+    }
+
+    a:hover{
+        color: #ff718e;
+    }
+
+    .register-button{
+       background:  $pink;
+       text-align: center;
+       padding: 7px 20px;
+       line-height: 30px;
+       color: #FFFFFF;
+       border-radius: 5px;
+    }
+}
