@@ -17,7 +17,7 @@ export default class Listings extends React.Component {
             name: 'David',
         }
     }
-
+// Class
     render() {
         return (<section className='listings'>
             <section className='search-area'>
