@@ -1,7 +1,16 @@
+#content-area{
+    overflow: auto;
+    width: 100%;
+    background: #000000;
+    min-height: 100vh;
+}
+
 #filter{
     background: #faf7f5;
     width: 30%;
     max-width: 300px;
+    float: left;
+    // display: inline-block;
 
     .inside-content{
        padding: 20px;
@@ -56,6 +65,62 @@
     }
 }
 
-#Listings{
-    
+#listings{
+    width: 70%;
+    float: left; 
+    padding: 15px;
+    background: #fffeff;
+    // display: inline-block;
+
+    .search-area{
+        input[type="text"]{
+            width: 70%;
+            background: transparent;
+            font-size: 2rem;
+            border: none;
+            border-bottom: 2px solid #d1cbcd;
+            margin-bottom: 20px;
+            color: #d1cbcd;
+        }
+    }
+
+    .sort-by-section{
+        margin-bottom: 20px;
+
+        .results{
+            color: #d1cbcd;
+            font-size: 0.8rem;
+            display: inline-block;
+        }
+        .sort-options{
+            float: right;
+            select{
+                font-size: 0.9rem;
+                font-weight: 300;
+                border: 1px solid #d1cbcd;
+                background: transparent;
+                padding: 20px;
+                display: inline-block;
+                margin-right: 15px;
+                vertical-align: top;
+            }
+
+            .view{
+                display: inline-block;
+
+                .view-icon{
+                    width: 1.5rem;
+                    margin-right: 15px;
+                }
+            }
+        }
+    }
+
+    .listing-results{
+        .listing{
+            background: #ffffff;
+            width: 33.33%;
+
+        }
+    }
 }
