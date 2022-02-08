@@ -36,8 +36,8 @@ export default class Listings extends React.Component {
                         <option value="price-asc">Lowest Price</option>
                     </select>
                     <div className='view'>
-                        <img src={list_icon} alt="List" className='view-icon'/>
-                        <img src={menu_items_icon} alt="Menu Items" className='view-icon'/>
+                        <img src={list_icon} alt="List" className='view-icon' />
+                        <img src={menu_items_icon} alt="Menu Items" className='view-icon' />
                     </div>
                 </div>
             </section>
@@ -45,18 +45,29 @@ export default class Listings extends React.Component {
             <section className='listing-results'>
                 <div className="listing">
                     <div className='listing-image'>
-                        <span className='Address'>Address</span>
+                        <span className='address'>2457 Sandhook Lane</span>
                         <div className='details'>
-                            <div className='user-image'></div>
-                            <div className='user-details'>
-                                <span className='user-name'>Jessica Trige</span>
-                                <span className='post-date'>Jan 1, 2022</span>
+                            <div className='column-3'>
+                                <div className='user-image'></div>
                             </div>
-                            <div className='listing-details'>
-                                <div className='floor-space'><img src={square} alt="Sqaure" /><span>1000 ft²</span></div>
-                                <div className='bedroom'>
-                                    <img src={person_sleeping} alt="Bedrooms" />
-                                    <span>3 Bedrooms</span>
+                            <div className='column-9'>
+                                <div className='user-details'>
+                                    <span className='user-name'>Jessica Trige</span>
+                                    <span className='post-date'>Jan 1, 2022</span>
+                                </div>
+                                <div className='listing-details'>
+                                    <div className='floor-space'>
+                                        <img src={square} alt="Sqaure" />
+                                        <span>1000 ft²</span>
+                                    </div>
+                                    <div className='bedroom'>
+                                        <img src={person_sleeping} alt="Bedrooms" />
+                                        <span>3 Bedrooms</span>
+                                    </div>
+                                </div>
+
+                                <div className='view-button'>
+                                    View Listing
                                 </div>
                             </div>
                         </div>
@@ -70,13 +81,13 @@ export default class Listings extends React.Component {
 
             <section className='pagination'>
                 <ul className='pagination-numbers'>
-                   <li>Previous</li>
-                   <li>1</li>
-                   <li>2</li>
-                   <li>3</li>
-                   <li>4</li>
-                   <li>5</li>
-                   <li>Next</li>
+                    <li>Previous</li>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>Next</li>
                 </ul>
             </section>
 
