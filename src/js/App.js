@@ -7,15 +7,30 @@ import Header from '../js/header.js';
 import Filter from '../js/filter';
 import Listings from '../js/listings';
 import React from 'react';
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
+import listingData from './data/listingData.js'
 
 class App extends React.Component {
   constructor() {
     super()
     this.state = {
       name: 'David',
-      rate: 100
+      listingData,
+
     }
+
+    this.change = this.change.bind(this)
+  }
+
+  change(event) {
+    var name = event.target.name
+    var value = event.target.value
+
+    this.setState({
+      [name]: value
+    }, () => {
+      console.log(this.state)
+    })
   }
 
   render() {
@@ -23,8 +38,8 @@ class App extends React.Component {
       <div className='body'>
         <Header />
         <section id="content-area">
-          <Filter />
-          <Listings />
+          <Filter change={this.change} />
+          <Listings listingData={this.state.listingData} />
         </section>
       </div>
     )

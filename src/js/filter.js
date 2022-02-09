@@ -18,8 +18,12 @@ export default class Filter extends React.Component {
 
             <div className='inside-content'>
                 <h4>Filter</h4>
-                <select name="neighborhood" className='filter neighborhood'>
-                    <option>Sanford</option>
+                <select name="neighborhood" className='filter neighborhood' onChange={this.props.change}>
+                    <option value="Sanford">Sanford</option>
+                    <option value="Deland">Deland</option>
+                    <option value="Winter Haven">Winter Haven</option>
+                    <option value="Altamonte Springs">Altamonte Springs</option>
+                    <option value="Orlando">Orlando</option>
                 </select>
                 <select name="type-of-home" className='filter neighborhood'>
                     <option>Single-Family</option>

@@ -13,14 +13,60 @@ import location from '../icons/Location.svg'
 // Body
 import React from 'react';
 
-export default class Listings extends React.Component {
+export default class Header extends React.Component {
     constructor() {
         super()
         this.state = {
             name: 'David',
         }
-        let squared = "&sup2";
+        // let squared = "&sup2";
+        this.loopListings = this.loopListings.bind(this)
     }
+
+    loopListings() {
+        var { listingData } = this.props
+
+        return listingData.map((listing, index) => {
+            return (<div className='column-3' key={index}>
+                <div className="listing">
+                    <div className='listing-image' style={{background: `url("${listing.image}") no-repeat
+                center center`}}>
+                        <span className='address'>{listing.address}</span>
+                        <div className='details'>
+                            <div className='column-3'>
+                                <div className='user-image'></div>
+                            </div>
+                            <div className='column-9'>
+                                <div className='user-details'>
+                                    <span className='user-name'>Jessica Trige</span>
+                                    <span className='post-date'>Jan 1, 2022</span>
+                                </div>
+                                <div className='listing-details'>
+                                    <div className='floor-space'>
+                                        <img src={square} alt="Sqaure" />
+                                        <span>1000 ft²</span>
+                                    </div>
+                                    <div className='bedroom'>
+                                        <img src={person_sleeping} alt="Bedrooms" />
+                                        <span>{listing.bedrooms} Bedrooms</span>
+                                    </div>
+                                </div>
+
+                                <div className='view-button'>
+                                    View Listing
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='bottom-info'>
+                        <span className='price'>${listing.price} /year</span>
+                        <span className='location'><img src={location} alt="Location" />Location: {listing.city}, {listing.state}</span>
+                    </div>
+                </div>
+            </div>)
+        })
+    }
+
     // Class
     render() {
         return (<section id='listings'>
@@ -43,46 +89,15 @@ export default class Listings extends React.Component {
             </section>
 
             <section className='listing-results'>
-                <div className="listing">
-                    <div className='listing-image'>
-                        <span className='address'>2457 Sandhook Lane</span>
-                        <div className='details'>
-                            <div className='column-3'>
-                                <div className='user-image'></div>
-                            </div>
-                            <div className='column-9'>
-                                <div className='user-details'>
-                                    <span className='user-name'>Jessica Trige</span>
-                                    <span className='post-date'>Jan 1, 2022</span>
-                                </div>
-                                <div className='listing-details'>
-                                    <div className='floor-space'>
-                                        <img src={square} alt="Sqaure" />
-                                        <span>1000 ft²</span>
-                                    </div>
-                                    <div className='bedroom'>
-                                        <img src={person_sleeping} alt="Bedrooms" />
-                                        <span>3 Bedrooms</span>
-                                    </div>
-                                </div>
 
-                                <div className='view-button'>
-                                    View Listing
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='bottom-info'>
-                        <span>$1000 / month</span>
-                        <span><img src={location} alt="Location" />Location: Sanford, Florida</span>
-                    </div>
-                </div>
+                {this.loopListings()}
+
             </section>
 
-            <section className='pagination'>
-                <ul className='pagination-numbers'>
+            <section id='pagination'>
+                <ul className='pages'>
                     <li>Previous</li>
-                    <li>1</li>
+                    <li className='active'>1</li>
                     <li>2</li>
                     <li>3</li>
                     <li>4</li>
