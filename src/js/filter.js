@@ -9,11 +9,51 @@ export default class Filter extends React.Component {
         this.state = {
             name: 'David',
         }
+        this.cities = this.cities.bind(this)
+        this.homeType = this.homeType.bind(this)
+        this.bedrooms = this.bedrooms.bind(this)
     }
 
-    componentWillMount(){
+    componentWillMount() {
         this.props.populateAction()
     }
+
+    cities() {
+        if (this.props.globalState.populateFormsData.cities != undefined) {
+            var { cities } = this.props.globalState.populateFormsData
+            console.log(cities)
+            return cities.map((item) => {
+                return (
+                    <option key={item} value={item}>{item}</option>
+                )
+            })
+        }
+    }
+
+    homeType() {
+        if (this.props.globalState.populateFormsData.homeType != undefined) {
+            var { homeType } = this.props.globalState.populateFormsData
+            console.log(homeType)
+            return homeType.map((item) => {
+                return (
+                    <option key={item} value={item}>{item}</option>
+                )
+            })
+        }
+    }
+
+    bedrooms() {
+        if (this.props.globalState.populateFormsData.bedrooms != undefined) {
+            var { bedrooms } = this.props.globalState.populateFormsData
+            console.log(bedrooms)
+            return bedrooms.map((item) => {
+                return (
+                    <option key={item} value={item}>{item} + Bedrooms</option>
+                )
+            })
+        }
+    }
+
 
     render() {
         return (<section id='filter'>
@@ -23,32 +63,21 @@ export default class Filter extends React.Component {
             <div className='inside-content'>
                 <h4>Filter</h4>
 
-                <label htmlFor ='city'>City</label>
+                <label htmlFor='city'>City</label>
                 <select name="city" className='filter city' onChange={this.props.change}>
-                    <option value="All">All Cities</option>
-                    <option value='Sanford'>Sanford</option>
-                    <option value="Deland">Deland</option>
-                    <option value="Winter Haven">Winter Haven</option>
-                    <option value="Altamonte Springs">Altamonte Springs</option>
-                    <option value="Orlando">Orlando</option>
+                    <option value='All'>All</option>
+                    {this.cities()}
                 </select>
 
-                <label htmlFor ='city'>Type of Home</label>
+                <label htmlFor='city'>Type of Home</label>
                 <select name="homeType" className='filter homeType' onChange={this.props.change}>
                     <option value="All">All Hometypes</option>
-                    <option value="Single_Family">Single-Family</option>
-                    <option value="Multi_Family">Multi-Family</option>
-                    <option value="Studio">Studio</option>
-                    <option value="Modern">Modern</option>
+                    {this.homeType()}
                 </select>
 
-                <label htmlFor ='city'># of Bedrooms</label>
+                <label htmlFor='city'># of Bedrooms</label>
                 <select name="rooms" className='filter bedrooms' onChange={this.props.change}>
-                    <option value="0">0+</option>
-                    <option value="3">3+ Bed</option>
-                    <option value="4">4+ Bed</option>
-                    <option value="5">5+ Bed</option>
-                    <option value="6">6+ Bed</option>
+                    {this.bedrooms()}
                 </select>
 
                 <div className='filter price'>

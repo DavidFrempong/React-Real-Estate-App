@@ -28,13 +28,25 @@ class App extends React.Component {
       finished_basement: false,
       gym: false, 
       filteredData: listingData,
-      populateFormsData: ''
+      populateFormsData: '' ,
+      sort_by: 'price_asc'
 
     }
 
     this.change = this.change.bind(this)
     this.filteredData = this.filteredData.bind(this)
     this.populateForms = this.populateForms.bind(this)
+  }
+
+  componentWillMount(){
+
+    var listingData = this.state.listingData.sort((a, b) => {
+       return a.price - b.price
+    })
+ 
+    this.setState({
+      listingData
+    })
   }
 
   change(event) {
@@ -66,6 +78,18 @@ class App extends React.Component {
       })
     }
 
+    if(this.state.sort_by == 'price_dsc'){
+      newData = newData.sort((a,b) => {
+        return a.price - b.price
+      })
+    }
+
+    if(this.state.sort_by == 'price_asc'){
+      newData = newData.sort((a,b) => {
+        return b.price - a.price
+      })
+    }
+
     this.setState({
       filteredData: newData
     })
@@ -78,6 +102,8 @@ class App extends React.Component {
     })
     cities = new Set(cities)
     cities = [...cities]
+
+    cities = cities.sort()
     
     // homeType
     var homeType = this.state.listingData.map(function (item) {
@@ -86,12 +112,16 @@ class App extends React.Component {
     homeType = new Set(homeType)
     homeType = [...homeType]
 
+    homeType = homeType.sort()
+
     // bedrooms
     var bedrooms = this.state.listingData.map(function (item) {
       return item.rooms
     })
     bedrooms = new Set(bedrooms)
     bedrooms = [...bedrooms]
+
+    bedrooms = bedrooms.sort()
 
     this.setState({
       populateFormsData: {
@@ -110,7 +140,7 @@ class App extends React.Component {
         <Header />
         <section id="content-area">
           <Filter change={this.change} globalState = {this.state} populateAction = {this.populateForms}/>
-          <Listings listingData={this.state.filteredData} />
+          <Listings listingData={this.state.filteredData} change={this.change} />
         </section>
       </div>
     )

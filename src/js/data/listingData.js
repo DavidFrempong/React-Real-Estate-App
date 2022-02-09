@@ -17,7 +17,7 @@ var listingData = [
         address: '1720 Firebirch Ave',
         city: 'Deland',
         state: 'Florida',
-        rooms: 5,
+        rooms: 4,
         price: '500,000',
         floorSpace: 2700,
         extras: [
@@ -31,7 +31,7 @@ var listingData = [
         address: '5560 Sleeper Road',
         city: 'Winter Haven',
         state: 'Florida',
-        rooms: 4,
+        rooms: 5,
         price: '450,000',
         floorSpace: 2550,
         extras: [
@@ -59,7 +59,7 @@ var listingData = [
         address: '5700 Bumblebee Ave',
         city: 'Altamonte Springs',
         state: 'Florida',
-        rooms: 5,
+        rooms: 7,
         price: '200,000',
         floorSpace: 2100,
         extras: [

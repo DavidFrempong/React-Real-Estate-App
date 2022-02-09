@@ -24,7 +24,7 @@ export default class Header extends React.Component {
     }
 
     loopListings() {
-        var { listingData } = this.props
+        var {listingData} = this.props
 
         if(listingData == undefined || listingData.length === 0){
             return "Sorry, your request did not match any results."
@@ -79,11 +79,11 @@ export default class Header extends React.Component {
             </section>
 
             <section className='sort-by-section'>
-                <div className='results'>400 results found</div>
+                <div className='results'>5 results found</div>
                 <div className='sort-options'>
-                    <select name="sort-by" className='sort-by'>
-                        <option value="price-asc">Highest Price</option>
-                        <option value="price-asc">Lowest Price</option>
+                    <select name="sort_by" className='sort_by' onChange={this.props.change}>
+                        <option value="price_asc">Lowest Price</option>
+                        <option value="price_dsc">Highest Price</option>
                     </select>
                     <div className='view'>
                         <img src={list_icon} alt="List" className='view-icon' />
