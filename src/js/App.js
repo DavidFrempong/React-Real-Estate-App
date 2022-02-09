@@ -16,6 +16,14 @@ class App extends React.Component {
     this.state = {
       name: 'David',
       listingData,
+      min_price: 0,
+      max_price: 5000000,
+      min_floor_space: 0,
+      max_floor_space: 10000,
+      elevator: false,
+      swimming_pool: false,
+      finished_basement: false,
+      gym: false, 
 
     }
 
@@ -24,7 +32,7 @@ class App extends React.Component {
 
   change(event) {
     var name = event.target.name
-    var value = event.target.value
+    var value = (event.target.type === 'checkbox') ? event.target.checked :  event.target.value
 
     this.setState({
       [name]: value
@@ -38,7 +46,7 @@ class App extends React.Component {
       <div className='body'>
         <Header />
         <section id="content-area">
-          <Filter change={this.change} />
+          <Filter change={this.change} globalState = {this.state} />
           <Listings listingData={this.state.listingData} />
         </section>
       </div>

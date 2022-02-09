@@ -25,38 +25,43 @@ export default class Filter extends React.Component {
                     <option value="Altamonte Springs">Altamonte Springs</option>
                     <option value="Orlando">Orlando</option>
                 </select>
-                <select name="type-of-home" className='filter neighborhood'>
-                    <option>Single-Family</option>
+                <select name="type-of-home" className='filter hometype' onChange={this.props.change}>
+                    <option value="Single-Family">Single-Family</option>
+                    <option value="Multi-Family">Multi-Family</option>
+                    <option value="Studio">Studio</option>
                 </select>
-                <select name="number-of-rooms" className='filter neighborhood'>
-                    <option>4 Bed</option>
+                <select name="number-of-rooms" className='filter bedrooms' onChange={this.props.change}>
+                    <option value="3">3 Bed</option>
+                    <option value="4">4 Bed</option>
+                    <option value="5">5 Bed</option>
+                    <option value="6">6 Bed</option>
                 </select>
 
                 <div className='filter price'>
                     <span className='title'>Price</span>
-                    <input type={"text"} name='min-price' className='min-price' />
-                    <input type={"text"} name='max-price' className='max-price' />
+                    <input type={"text"} name='min_price' value = {this.props.globalState.min_price} className='min-price' onChange={this.props.change} />
+                    <input type={"text"} name='max_price' value={this.props.globalState.max_price} className='max-price' onChange={this.props.change} />
                 </div>
 
                 <div className='filter floor-space'>
                     <span className='title'>Floor Space</span>
-                    <input type={"text"} name='min-floor-space' className='min-floor-space' />
-                    <input type={"text"} name='max-floor-space' className='max-floor-space' />
+                    <input type={"text"} name='min_floor_space' value = {this.props.globalState.min_floor_space} className='min-floor-space' onChange={this.props.change} />
+                    <input type={"text"} name='max_floor_space' value = {this.props.globalState.max_floor_space} className='max-floor-space' onChange={this.props.change} />
                 </div>
 
                 <div className='filter extra-features'>
                     <span className='title'>Extra Features</span>
-                    <label for="extra-features"><span>Elevators</span>
-                        <input type="checkbox" name="extra-features" value="elevator" />
+                    <label htmlFor="extra-features"><span>Elevators</span>
+                        <input type="checkbox" name="elevator" value="elevator" onChange={this.props.change} />
                     </label>
-                    <label for="extra-features"><span>Swimming Pool</span>
-                        <input type="checkbox" name="extra-features" value="swimming-pool" />
+                    <label htmlFor="extra-features"><span>Swimming Pool</span>
+                        <input type="checkbox" name="swimming_pool" value="swimming_pool" onChange={this.props.change} />
                     </label>
-                    <label for="extra-features"><span>Finished Basement</span>
-                        <input type="checkbox" name="extra-features" value="finished-basement" />
+                    <label htmlFor="extra-features"><span>Finished Basement</span>
+                        <input type="checkbox" name="finished_basement" value="finished_basement" onChange={this.props.change} />
                     </label>
-                    <label for="extra-features"><span>Gym</span>
-                        <input type="checkbox" name="extra-features" value="gym" />
+                    <label htmlFor="extra-features"><span>Gym</span>
+                        <input type="checkbox" name="gym" value="gym" onChange={this.props.change} />
                     </label>
                 </div>
             </div>
