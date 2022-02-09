@@ -26,6 +26,10 @@ export default class Header extends React.Component {
     loopListings() {
         var { listingData } = this.props
 
+        if(listingData == undefined || listingData.length === 0){
+            return "Sorry, your request did not match any results."
+        }
+
         return listingData.map((listing, index) => {
             return (<div className='column-3' key={index}>
                 <div className="listing">
