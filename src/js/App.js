@@ -17,7 +17,7 @@ class App extends React.Component {
       name: 'David',
       listingData,
       city: 'All',
-      homeType: 'Studio',
+      homeType: 'All',
       rooms: 3,
       min_price: 0,
       max_price: 5000000,
@@ -27,12 +27,14 @@ class App extends React.Component {
       swimming_pool: false,
       finished_basement: false,
       gym: false, 
-      filteredData: listingData
+      filteredData: listingData,
+      populateFormsData: ''
 
     }
 
     this.change = this.change.bind(this)
     this.filteredData = this.filteredData.bind(this)
+    this.populateForms = this.populateForms.bind(this)
   }
 
   change(event) {
@@ -49,16 +51,16 @@ class App extends React.Component {
 
   filteredData(){
     var newData = this.state.listingData.filter ((item) => {
-      return item.price >= this.state.min_price && item.price <= this.state.max_price && item.floorSpace >= this.state.min_floor_space && item.floorSpace <= this.state.max_floor_space
+      return item.price >= this.state.min_price && item.price <= this.state.max_price && item.floorSpace >= this.state.min_floor_space && item.floorSpace <= this.state.max_floor_space && item.rooms >= this.state.rooms
     })
 
-    if(this.state.city != "All"){
+    if(this.state.city !== 'All'){
       newData = newData.filter((item) => {
         return item.city == this.state.city
       })
     }
 
-    if(this.state.homeType != "All"){
+    if(this.state.homeType !== 'All'){
       newData = newData.filter((item) => {
         return item.homeType == this.state.homeType
       })
@@ -69,12 +71,45 @@ class App extends React.Component {
     })
   }
 
+  populateForms() {
+    // city
+    var cities = this.state.listingData.map(function (item) {
+      return item.city
+    })
+    cities = new Set(cities)
+    cities = [...cities]
+    
+    // homeType
+    var homeType = this.state.listingData.map(function (item) {
+      return item.homeType
+    })
+    homeType = new Set(homeType)
+    homeType = [...homeType]
+
+    // bedrooms
+    var bedrooms = this.state.listingData.map(function (item) {
+      return item.rooms
+    })
+    bedrooms = new Set(bedrooms)
+    bedrooms = [...bedrooms]
+
+    this.setState({
+      populateFormsData: {
+        homeType,
+        bedrooms,
+        cities
+      }
+    }, () => {
+      console.log(this.state)
+    })
+  }
+
   render() {
     return (
       <div className='body'>
         <Header />
         <section id="content-area">
-          <Filter change={this.change} globalState = {this.state} />
+          <Filter change={this.change} globalState = {this.state} populateAction = {this.populateForms}/>
           <Listings listingData={this.state.filteredData} />
         </section>
       </div>

@@ -11,6 +11,10 @@ export default class Filter extends React.Component {
         }
     }
 
+    componentWillMount(){
+        this.props.populateAction()
+    }
+
     render() {
         return (<section id='filter'>
 
@@ -18,20 +22,27 @@ export default class Filter extends React.Component {
 
             <div className='inside-content'>
                 <h4>Filter</h4>
+
+                <label htmlFor ='city'>City</label>
                 <select name="city" className='filter city' onChange={this.props.change}>
                     <option value="All">All Cities</option>
-                    <option value="Sanford">Sanford</option>
+                    <option value='Sanford'>Sanford</option>
                     <option value="Deland">Deland</option>
                     <option value="Winter Haven">Winter Haven</option>
                     <option value="Altamonte Springs">Altamonte Springs</option>
                     <option value="Orlando">Orlando</option>
                 </select>
+
+                <label htmlFor ='city'>Type of Home</label>
                 <select name="homeType" className='filter homeType' onChange={this.props.change}>
                     <option value="All">All Hometypes</option>
                     <option value="Single_Family">Single-Family</option>
                     <option value="Multi_Family">Multi-Family</option>
                     <option value="Studio">Studio</option>
+                    <option value="Modern">Modern</option>
                 </select>
+
+                <label htmlFor ='city'># of Bedrooms</label>
                 <select name="rooms" className='filter bedrooms' onChange={this.props.change}>
                     <option value="0">0+</option>
                     <option value="3">3+ Bed</option>

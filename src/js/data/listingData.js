@@ -9,7 +9,7 @@ var listingData = [
         extras: [
             'Gym', 'Pool'
         ],
-        homeType: 'Modern',
+        homeType: 'Single Family',
         image: 'https://i.pinimg.com/originals/25/27/0d/25270dc0d589794f4ab516e660f1fff8.jpg'
     },
 
@@ -37,7 +37,7 @@ var listingData = [
         extras: [
              'Pool'
         ],
-        homeType: 'Modern',
+        homeType: 'Multi Family',
         image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp6XxDpx9UsRrACMbUfcf2JVFzDljjRrW95OxmIuf6BDIEXPJlSTvCWqsIn4GyGyn0-ag&usqp=CAU'
     },
 
@@ -65,7 +65,7 @@ var listingData = [
         extras: [
              'Pool'
         ],
-        homeType: 'Modern',
+        homeType: 'Studio',
         image: 'https://photos.orlandoweekly.com/wp-content/uploads/2021/10/Screenshot-2021-10-22-2.55.26-PM.jpg'
     },
 ]
