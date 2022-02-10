@@ -1,7 +1,11 @@
+// Body
+import React from 'react';
+
 // Styles
-import '../css/listings.scss';
-import '../css/index.scss';
-import '../css/variables.scss';
+import '../css/listings.scss'
+import '../css/index.scss'
+import '../css/variables.scss'
+import '../css/grid.scss'
 
 // Icons
 import list_icon from '../icons/List.svg';
@@ -10,30 +14,28 @@ import person_sleeping from '../icons/Person Sleeping, White.svg';
 import square from '../icons/Square, Rounded (White).svg';
 import location from '../icons/Location, Grey.svg'
 
-// Body
-import React from 'react';
+
 
 export default class Header extends React.Component {
     constructor() {
         super()
         this.state = {
-            name: 'David',
+            name: 'David'
         }
-        // let squared = "&sup2";
         this.loopListings = this.loopListings.bind(this)
     }
 
     loopListings() {
-        var { listingData } = this.props
+        var {listingData} = this.props
 
-        if (listingData == undefined || listingData.length === 0) {
+        if (listingData == undefined || listingData.length == 0) {
             return "Sorry, your request did not match any results."
         }
 
         return listingData.map((listing, index) => {
             if (this.props.globalState.view == 'box') {
                 // This is the "box" view
-                return (<div className='col-3' key={index}>
+                return (<div className="col-md-3" key={index}>
                     <div className="listing">
                         <div className='listing-image' style={{
                             background: `url("${listing.image}") no-repeat

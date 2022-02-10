@@ -1,38 +1,39 @@
 // import logo from './logo.svg';
-import '../css/listings.scss';
-import '../css/index.scss';
-import '../css/variables.scss';
-import '../css/content-area.scss';
-import Header from '../js/header.js';
-import Filter from '../js/filter';
-import Listings from '../js/listings';
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+import '../css/listings.scss'
+import '../css/index.scss'
+import '../css/variables.scss'
+import '../css/content-area.scss'
+import Header from '../js/header.js'
+import Filter from '../js/filter'
+import Listings from '../js/listings'
 import listingData from './data/listingData.js'
+
 
 class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      name: 'David',
+      name: 'Joe',
       listingData,
       city: 'All',
       homeType: 'All',
-      rooms: 3,
+      bedrooms: '0',
       min_price: 0,
-      max_price: 5000000,
+      max_price: 10000000,
       min_floor_space: 0,
-      max_floor_space: 10000,
-      elevator: false,
-      swimming_pool: false,
+      max_floor_space: 50000,
+      elavator: false,
       finished_basement: false,
-      gym: false, 
+      gym: false,
+      swimming_pool: false,
       filteredData: listingData,
-      populateFormsData: '' ,
-      sort_by: 'price_asc',
-      view: 'long',
+      populateFormsData: '',
+      sortby: 'price-dsc',
+      view: 'box',
       search: ''
-
     }
 
     this.change = this.change.bind(this)
@@ -40,21 +41,19 @@ class App extends React.Component {
     this.populateForms = this.populateForms.bind(this)
     this.changeView = this.changeView.bind(this)
   }
-
-  componentWillMount(){
+  componentDidMount() {
 
     var listingData = this.state.listingData.sort((a, b) => {
-       return a.price - b.price
+      return a.price - b.price
     })
- 
+
     this.setState({
       listingData
     })
   }
-
   change(event) {
     var name = event.target.name
-    var value = (event.target.type === 'checkbox') ? event.target.checked :  event.target.value
+    var value = (event.target.type === 'checkbox') ? event.target.checked : event.target.value
 
     this.setState({
       [name]: value
@@ -63,80 +62,84 @@ class App extends React.Component {
       this.filteredData()
     })
   }
-
-  changeView(viewName){
+  changeView(viewName) {
     this.setState({
       view: viewName
     })
   }
 
-  filteredData(){
-    var newData = this.state.listingData.filter ((item) => {
-      return item.price >= this.state.min_price && item.price <= this.state.max_price && item.floorSpace >= this.state.min_floor_space && item.floorSpace <= this.state.max_floor_space && item.rooms >= this.state.rooms
+  filteredData() {
+    var newData = this.state.listingData.filter((item) => {
+      return item.price >= this.state.min_price && item.price <= this.state.max_price && item.floorSpace >= this.state.min_floor_space && item.floorSpace <= this.state.max_floor_space && item.rooms >= this.state.bedrooms
     })
 
-    if(this.state.city !== 'All'){
+    if (this.state.city != "All") {
       newData = newData.filter((item) => {
         return item.city == this.state.city
       })
+      console.log(newData)
     }
 
-    if(this.state.homeType !== 'All'){
+    if (this.state.homeType != "All") {
       newData = newData.filter((item) => {
         return item.homeType == this.state.homeType
       })
     }
 
-    if(this.state.sort_by == 'price_dsc'){
-      newData = newData.sort((a,b) => {
+    if (this.state.sort_by == 'price-dsc') {
+      newData = newData.sort((a, b) => {
         return a.price - b.price
       })
     }
 
-    if(this.state.sort_by == 'price_asc'){
-      newData = newData.sort((a,b) => {
+    if (this.state.sort_by == 'price-asc') {
+      newData = newData.sort((a, b) => {
         return b.price - a.price
       })
     }
 
-    if(this.state.search != ''){
+    if (this.state.search != '') {
       newData = newData.filter((item) => {
         var city = item.city.toLowerCase()
         var searchText = this.state.search.toLowerCase()
         var n = city.match(searchText)
 
-        if (n != null){
+        if (n != null) {
           return true
         }
       })
     }
 
+
+
     this.setState({
       filteredData: newData
     })
   }
-
   populateForms() {
     // city
-    var cities = this.state.listingData.map(function (item) {
+    var cities = this.state.listingData.map((item) => {
       return item.city
     })
     cities = new Set(cities)
     cities = [...cities]
 
     cities = cities.sort()
-    
+    console.log(cities)
+
+
+
     // homeType
-    var homeType = this.state.listingData.map(function (item) {
+    var homeTypes = this.state.listingData.map((item) => {
       return item.homeType
     })
-    homeType = new Set(homeType)
-    homeType = [...homeType]
+    homeTypes = new Set(homeTypes)
+    homeTypes = [...homeTypes]
 
-    homeType = homeType.sort()
+    homeTypes = homeTypes.sort()
 
     // bedrooms
-    var bedrooms = this.state.listingData.map(function (item) {
+    var bedrooms = this.state.listingData.map((item) => {
       return item.rooms
     })
     bedrooms = new Set(bedrooms)
@@ -146,26 +149,26 @@ class App extends React.Component {
 
     this.setState({
       populateFormsData: {
-        homeType,
+        homeTypes,
         bedrooms,
         cities
       }
     }, () => {
       console.log(this.state)
     })
+
   }
 
   render() {
-    return (
-      <div className='body'>
-        <Header />
-        <section id="content-area">
-          <Filter change={this.change} globalState = {this.state} populateAction = {this.populateForms}/>
-          <Listings listingData={this.state.filteredData} change={this.change} globalState = {this.state} changeView={this.changeView}/>
-        </section>
-      </div>
-    )
+    return (<div>
+      <Header />
+      <section id="content-area">
+        <Filter change={this.change} globalState={this.state} populateAction={this.populateForms} />
+        <Listings listingData={this.state.filteredData} change={this.change} globalState={this.state} changeView={this.changeView} />
+      </section>
+    </div>)
   }
 }
 
-export default App;
+export default App
+

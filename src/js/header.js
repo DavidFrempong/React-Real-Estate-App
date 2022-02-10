@@ -1,8 +1,9 @@
 // import logo from './logo.svg';
-import '../css/listings.scss';
-import '../css/index.scss';
-import '../css/variables.scss';
-import React from 'react';
+import React from 'react'
+import '../css/listings.scss'
+import '../css/index.scss'
+import '../css/variables.scss'
+
 
 export default class Header extends React.Component {
   constructor() {

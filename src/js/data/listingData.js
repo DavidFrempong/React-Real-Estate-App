@@ -35,7 +35,7 @@ var listingData = [
         price: '450,000',
         floorSpace: 2550,
         extras: [
-             'Pool'
+            'Pool'
         ],
         homeType: 'Multi Family',
         image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp6XxDpx9UsRrACMbUfcf2JVFzDljjRrW95OxmIuf6BDIEXPJlSTvCWqsIn4GyGyn0-ag&usqp=CAU'
@@ -49,7 +49,7 @@ var listingData = [
         price: '650,000',
         floorSpace: 2550,
         extras: [
-             'Gym', 'Pool'
+            'Gym', 'Pool'
         ],
         homeType: 'Modern',
         image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlo7vppptVRoPawrBOU4eqaYJpbFBtIjzewQ&usqp=CAU'
@@ -63,11 +63,11 @@ var listingData = [
         price: '200,000',
         floorSpace: 2100,
         extras: [
-             'Pool'
+            'Pool'
         ],
         homeType: 'Studio',
         image: 'https://photos.orlandoweekly.com/wp-content/uploads/2021/10/Screenshot-2021-10-22-2.55.26-PM.jpg'
-    },
+    }
 ]
 
 export default listingData;
