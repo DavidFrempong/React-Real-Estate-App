@@ -5,6 +5,11 @@
     min-height: 100vh;
 }
 
+.filterlabel{
+    margin-bottom: 1.2rem;
+}
+
+
 #filter {
     background: #faf7f5;
     width: 30%;
@@ -109,9 +114,10 @@
             .view {
                 display: inline-block;
 
-                .view-icon {
+                .view_icon {
                     width: 1.5rem;
                     margin-right: 15px;
+                    cursor: pointer;
                 }
             }
         }
@@ -284,7 +290,10 @@
 }
 
 #pagination{
+    width: 100%;
+    display: block;
     text-align: center;
+    
     .pages{
         margin: 0 auto;
         background: white;
@@ -309,16 +318,4 @@
             }
         }
     }
-}
-
-.column-3{
-    width: 25%;
-    display: inline-block;
-    vertical-align: top;
-    padding: 0 15px;
-}
-
-.column-9{
-    width: 75%;
-    display: inline-block;
 }

@@ -63,19 +63,19 @@ export default class Filter extends React.Component {
             <div className='inside-content'>
                 <h4>Filter</h4>
 
-                <label htmlFor='city'>City</label>
+                <label htmlFor='city' className='filterlabel'>City</label>
                 <select name="city" className='filter city' onChange={this.props.change}>
                     <option value='All'>All</option>
                     {this.cities()}
                 </select>
 
-                <label htmlFor='city'>Type of Home</label>
+                <label htmlFor='city'  className='filterlabel'>Type of Home</label>
                 <select name="homeType" className='filter homeType' onChange={this.props.change}>
                     <option value="All">All Hometypes</option>
                     {this.homeType()}
                 </select>
 
-                <label htmlFor='city'># of Bedrooms</label>
+                <label htmlFor='city' className='filterlabel'># of Bedrooms</label>
                 <select name="rooms" className='filter bedrooms' onChange={this.props.change}>
                     {this.bedrooms()}
                 </select>

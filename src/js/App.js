@@ -29,13 +29,16 @@ class App extends React.Component {
       gym: false, 
       filteredData: listingData,
       populateFormsData: '' ,
-      sort_by: 'price_asc'
+      sort_by: 'price_asc',
+      view: 'long',
+      search: ''
 
     }
 
     this.change = this.change.bind(this)
     this.filteredData = this.filteredData.bind(this)
     this.populateForms = this.populateForms.bind(this)
+    this.changeView = this.changeView.bind(this)
   }
 
   componentWillMount(){
@@ -58,6 +61,12 @@ class App extends React.Component {
     }, () => {
       console.log(this.state)
       this.filteredData()
+    })
+  }
+
+  changeView(viewName){
+    this.setState({
+      view: viewName
     })
   }
 
@@ -87,6 +96,18 @@ class App extends React.Component {
     if(this.state.sort_by == 'price_asc'){
       newData = newData.sort((a,b) => {
         return b.price - a.price
+      })
+    }
+
+    if(this.state.search != ''){
+      newData = newData.filter((item) => {
+        var city = item.city.toLowerCase()
+        var searchText = this.state.search.toLowerCase()
+        var n = city.match(searchText)
+
+        if (n != null){
+          return true
+        }
       })
     }
 
@@ -140,7 +161,7 @@ class App extends React.Component {
         <Header />
         <section id="content-area">
           <Filter change={this.change} globalState = {this.state} populateAction = {this.populateForms}/>
-          <Listings listingData={this.state.filteredData} change={this.change} />
+          <Listings listingData={this.state.filteredData} change={this.change} globalState = {this.state} changeView={this.changeView}/>
         </section>
       </div>
     )

@@ -6,9 +6,9 @@ import '../css/variables.scss';
 // Icons
 import list_icon from '../icons/List.svg';
 import menu_items_icon from '../icons/Menu Items.svg';
-import person_sleeping from '../icons/Person Sleeping.svg';
-import square from '../icons/Sqaure, Rounded.svg';
-import location from '../icons/Location.svg'
+import person_sleeping from '../icons/Person Sleeping, White.svg';
+import square from '../icons/Square, Rounded (White).svg';
+import location from '../icons/Location, Grey.svg'
 
 // Body
 import React from 'react';
@@ -24,50 +24,94 @@ export default class Header extends React.Component {
     }
 
     loopListings() {
-        var {listingData} = this.props
+        var { listingData } = this.props
 
-        if(listingData == undefined || listingData.length === 0){
+        if (listingData == undefined || listingData.length === 0) {
             return "Sorry, your request did not match any results."
         }
 
         return listingData.map((listing, index) => {
-            return (<div className='column-3' key={index}>
-                <div className="listing">
-                    <div className='listing-image' style={{background: `url("${listing.image}") no-repeat
+            if (this.props.globalState.view == 'box') {
+                // This is the "box" view
+                return (<div className='col-3' key={index}>
+                    <div className="listing">
+                        <div className='listing-image' style={{
+                            background: `url("${listing.image}") no-repeat
                 center center`}}>
-                        <span className='address'>{listing.address}</span>
-                        <div className='details'>
-                            <div className='column-3'>
-                                <div className='user-image'></div>
-                            </div>
-                            <div className='column-9'>
-                                <div className='user-details'>
-                                    <span className='user-name'>Jessica Trige</span>
-                                    <span className='post-date'>Jan 1, 2022</span>
+                            <span className='address'>{listing.address}</span>
+                            <div className='details'>
+                                <div className='col-3'>
+                                    <div className='user-image'></div>
                                 </div>
-                                <div className='listing-details'>
-                                    <div className='floor-space'>
-                                        <img src={square} alt="Sqaure" />
-                                        <span>1000 ft²</span>
+                                <div className='col-9'>
+                                    <div className='user-details'>
+                                        <span className='user-name'>Jessica Trige</span>
+                                        <span className='post-date'>Jan 1, 2022</span>
                                     </div>
-                                    <div className='bedroom'>
-                                        <img src={person_sleeping} alt="Bedrooms" />
-                                        <span>{listing.bedrooms} Bedrooms</span>
+                                    <div className='listing-details'>
+                                        <div className='floor-space'>
+                                            <img src={square} alt="Sqaure" />
+                                            <span>{listing.floorSpace} ft²</span>
+                                        </div>
+                                        <div className='bedroom'>
+                                            <img src={person_sleeping} alt="Bedrooms" />
+                                            <span>{listing.rooms} Bedrooms</span>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div className='view-button'>
-                                    View Listing
+                                    <div className='view-button'>
+                                        View Listing
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div className='bottom-info'>
+                            <span className='price'>${listing.price} /year</span>
+                            <span className='location'><img src={location} alt="Location" />Location: {listing.city}, {listing.state}</span>
+                        </div>
                     </div>
-                    <div className='bottom-info'>
-                        <span className='price'>${listing.price} /year</span>
-                        <span className='location'><img src={location} alt="Location" />Location: {listing.city}, {listing.state}</span>
+                </div>)
+            } else {
+                // This is the "long" view
+                return (<div className='col-12 col-lg-6' key={index}>
+                    <div className="listing">
+                        <div className='listing-image' style={{
+                            background: `url("${listing.image}") no-repeat
+                center center`}}>
+                            <span className='address'>{listing.address}</span>
+                            <div className='details'>
+                                <div className='col-3'>
+                                    <div className='user-image'></div>
+                                </div>
+                                <div className='col-9'>
+                                    <div className='user-details'>
+                                        <span className='user-name'>Jessica Trige</span>
+                                        <span className='post-date'>Jan 1, 2022</span>
+                                    </div>
+                                    <div className='listing-details'>
+                                        <div className='floor-space'>
+                                            <img src={square} alt="Sqaure" />
+                                            <span>{listing.floorSpace} ft²</span>
+                                        </div>
+                                        <div className='bedroom'>
+                                            <img src={person_sleeping} alt="Bedrooms" />
+                                            <span>{listing.rooms} Bedrooms</span>
+                                        </div>
+                                    </div>
+
+                                    <div className='view-button'>
+                                        View Listing
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='bottom-info'>
+                            <span className='price'>${listing.price} /year</span>
+                            <span className='location'><img src={location} alt="Location" />Location: {listing.city}, {listing.state}</span>
+                        </div>
                     </div>
-                </div>
-            </div>)
+                </div>)
+            }
         })
     }
 
@@ -75,30 +119,33 @@ export default class Header extends React.Component {
     render() {
         return (<section id='listings'>
             <section className='search-area'>
-                <input type={"text"} name="search" />
+                <input type={"text"} name="search" onChange={this.props.change} />
             </section>
 
             <section className='sort-by-section'>
-                <div className='results'>5 results found</div>
+                <div className='results'>{this.props.globalState.filteredData.length} result(s) found</div>
                 <div className='sort-options'>
                     <select name="sort_by" className='sort_by' onChange={this.props.change}>
                         <option value="price_asc">Lowest Price</option>
                         <option value="price_dsc">Highest Price</option>
                     </select>
                     <div className='view'>
-                        <img src={list_icon} alt="List" className='view-icon' />
-                        <img src={menu_items_icon} alt="Menu Items" className='view-icon' />
+                        <img src={list_icon} alt="List" className='view_icon' onClick={this.props.changeView.bind(null, 'box')} />
+                        <img src={menu_items_icon} alt="Menu Items" className='view_icon' onClick={this.props.changeView.bind(null, 'long')} />
                     </div>
                 </div>
             </section>
 
             <section className='listing-results'>
 
-                {this.loopListings()}
+                <div className='row'>
+                    {this.loopListings()}
+                </div>
 
             </section>
 
             <section id='pagination'>
+
                 <ul className='pages'>
                     <li>Previous</li>
                     <li className='active'>1</li>

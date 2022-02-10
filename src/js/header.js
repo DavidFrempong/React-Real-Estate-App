@@ -15,12 +15,13 @@ export default class Header extends React.Component {
   render() {
     return (
       <header>
-          <div className='logo'>Logo</div>
+          <div className='logo'>Lakeside</div>
           <nav>
-              <a href="#" rel='noreferrer' target={"_blank"}>Create Ads</a>
-              <a href="#" rel='noreferrer' target={"_blank"}>Create Ads</a>
-              <a href="#" rel='noreferrer' target={"_blank"}>Create Ads</a>
-              <a href="#" className='register-button'>Register</a>
+              <a href="#" rel='noreferrer' target={"_blank"}>Buy</a>
+              <a href="#" rel='noreferrer' target={"_blank"}>Rent</a>
+              <a href="#" rel='noreferrer' target={"_blank"}>Sell</a>
+              <a href="#" rel='noreferrer' target={"_blank"}>Contact Agent</a>
+              <a href="#" className='register-button'>Sign In</a>
           </nav>
       </header>
     )
